@@ -1,0 +1,79 @@
+
+<div class="app">
+
+
+
+	<div class="details-sun">
+
+
+		<div class="cards-list">
+
+			<div class="card 1">
+				<div class="card_image"> <img src="{{sun.pictures.[0]}}" /></div>
+				<h5 class="card-title">{{sun.name}}</h5>
+				<p> {{sun.address.street}} {{sun.address.number}} {{sun.address.city}} </p>
+				<p>Created by: <a style="text-decoration: none;"
+						href="/users/{{sun.creator._id}}/profile">{{sun.creator.username}}</a></p>
+
+				<div class="heart-wrapper">
+					<button type="button" class="favorite-button">
+						<i class="fas fa-heart favorite__icon favorite--enable"></i>
+						<i class="far fa-heart favorite__icon favorite--not"></i>
+					</button>
+					<p id="advice"></p>
+				</div>
+
+
+
+				<p class="card-text">{{sun.comment}}</p>
+			</div>
+			{{!-- <img src="{{sun.pictures.[0]}}" class="img-detail" alt="..."> --}}
+
+		</div>
+
+		<div class="sun-info">
+			<div class="card-small">
+
+				<p class="title-black" id="category">{{sun.category}}</p>
+
+				<p id="temperature"></p>
+
+				<p id="sunrise"></p>
+
+				<p id="sunset"></p>
+
+				<p id="cloudcover"></p>
+
+
+			</div>
+			<div>
+				{{#if owner}}
+				<a style="text-decoration: none;" class="press-btn"
+					href="/suns/{{sun.category}}/list/{{sun._id}}/edit">Edit</a>
+
+				<a style="text-decoration: none;" class="press-btn"
+					href="/suns/{{sun.category}}/list/{{sun._id}}/delete">Delete</a>
+				{{/if}}
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+</div>
+<div class="tamaño">
+	<div id="map"></div>
+</div>
+
+<form>
+	<input type="hidden" id="latitude" name="lat" value="{{sun.location.coordinates.[0]}}">
+	<input type="hidden" id="longitude" name="lng" value="{{sun.location.coordinates.[1]}}">
+	<input type="hidden" id="sun-id" value="{{sun._id}}">
+</form>
+<script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkzgyhP_CswYl13k5mNkOJu2Nldp3Y-Ys"></script>
+<script src="/js/maps-markers.js"></script>
+<script src="/js/time-weather.js"></script>
+<script src="/js/favorites.js"></script>

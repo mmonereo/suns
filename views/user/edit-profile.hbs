@@ -1,0 +1,46 @@
+<h2>Welcome {{user.username}}</h2>
+
+<div class="card" style="width: 18rem;">
+	<img src="{{user.profileImg}}" class="card-img-top" alt="...">
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+
+
+		
+		<form action="/users/{{user._id}}/edit-profile" method="POST" enctype="multipart/form-data">
+
+			<div class="form-group">
+				<label>Name:
+					<input type="text" name="username" class="form-control" value="{{user.username}}"/>
+				</label>
+			</div>
+
+			<div class="form-group">
+				<label>Bio:
+					<textarea name="bio" cols="30" rows="4" class="form-control">{{user.bio}}</textarea>
+				</label>
+			</div>
+
+			<div class="form-group">
+				<label>Profile Image:
+					<input type="file" name="profile-image" class="form-control-file"/>
+				</label>
+			</div>
+
+
+			<button type="submit" class="btn btn-primary">Edit</button>
+		</form>
+	</div>
+	<div>
+		{{#if favorites}}
+		<ul> Your favorites</ul>
+		{{#each favorites}}
+		<li>{{this}}</li>
+		{{/each}}
+		{{else}}
+		<p>You have no favorites</p>
+		{{/if}}
+	</div>
+</div>

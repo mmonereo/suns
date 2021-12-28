@@ -1,0 +1,40 @@
+<style>
+	.favis{
+		margin-top: 100px;
+	}
+</style>
+
+
+<h2>{{user.username}}</h2>
+{{#if user.profileImg}}
+<div class="card 1">
+    <div class="card_image"> <img src="{{user.profileImg}}" /></div>
+    <br>
+    <p class="bio">{{user.bio}}</p>
+    {{#if owner}}
+    <a href="/users/{{user._id}}/edit-profile" class="btn press-btn">Edit</a>
+    {{/if}}
+</div>
+{{/if}}
+{{#if user.favorites}}
+<p> Your favorites</p>
+
+    {{#each user.favorites}}
+			<div class="card favis" style="width: 18rem;">
+				<img src="{{this.pictures.[0]}}" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">{{this.name}}</h5>
+				
+					<button id="removeFavorite" class="press-btn"> Remove Fav.
+						<input type="hidden" id="remove-fav" value="{{_id}}">
+						<input type="hidden" id="category-for-fav" value="{{this.category}}">
+					</button>
+				
+				</div>
+			</div>
+	{{/each}}
+
+{{else}}
+<p>{{username}} You don't have any favorites yet </p>
+{{/if}}
+<script src="/js/profile-favorites.js"></script>
